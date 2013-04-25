@@ -1,0 +1,32 @@
+GEM
+  remote: http://ruby.taobao.org/
+  specs:
+    activesupport (3.2.13)
+      i18n (= 0.6.1)
+      multi_json (~> 1.0)
+    daemons (1.1.9)
+    em-hiredis (0.2.1)
+      hiredis (~> 0.4.0)
+    git (1.2.5)
+    hiredis (0.4.5)
+    i18n (0.6.1)
+    jeweler (1.8.4)
+      bundler (~> 1.0)
+      git (>= 1.2.5)
+      rake
+      rdoc
+    json (1.7.7)
+    multi_json (1.7.2)
+    rake (10.0.4)
+    rdoc (4.0.0)
+      json (~> 1.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activesupport
+  daemons
+  em-hiredis
+  jeweler
+  json

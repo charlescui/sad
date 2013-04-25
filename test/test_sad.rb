@@ -1,7 +1,18 @@
 require 'helper'
 
-class TestSad < Test::Unit::TestCase
-  should "probably rename this file and start testing for real" do
-    flunk "hey buddy, you should probably rename this file and start testing for real"
-  end
+class SadJob
+	extend ::Sad::Worker
+	
+	def self.queue
+		'MySadJob'
+	end
+
+	def self.perform(*args)
+		puts "I'm in sad job perform method."
+		puts args
+	end
 end
+
+EM::PeriodicTimer.new(3){
+	SadJob.enqueue('this is some args', {:hello => 'code'})	
+}
