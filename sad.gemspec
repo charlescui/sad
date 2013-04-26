@@ -5,23 +5,23 @@
 
 Gem::Specification.new do |s|
   s.name = "sad"
-  s.version = "1.0.0"
+  s.version = "1.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["\u{5d14}\u{5ce5}"]
-  s.date = "2013-04-25"
+  s.date = "2013-04-26"
   s.description = "a simple em baseed background job worker."
   s.email = "zheng.cuizh@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".document",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
     "lib/sad.rb",
@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
     "lib/sad/tasks.rb",
     "lib/sad/worker.rb",
     "lib/tasks/sad.rake",
+    "sad.gemspec",
     "test/helper.rb",
     "test/test_sad.rb"
   ]
