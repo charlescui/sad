@@ -60,13 +60,7 @@ require "sad/tasks"
 配置redis:
 
 ```ruby
-opts = {
-	:host => 'localhost', 
-	:port => 6379,
-	:db => 0,
-	:password => '******'
-}
-Sad::Config.redis = opts
+Sad::Config.redis = "redis://:secretpassword@example.com:9000/4"
 Sad::Config.namespace = 'MyBackgroundJobQueue'
 ```
 
