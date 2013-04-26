@@ -9,17 +9,25 @@ module Sad
 				@_namespace || 'SadQueue'
 			end
 
-			def redis=(opts={})
+			def default_rds_opts(inopts={})
 				opts = {
 					:host => 'localhost', 
 					:port => 6379,
 					:db => 0
-					}.update opts
-				@_redis = EM::Protocols::Redis.connect :host => opts[:host], :port => opts[:port], :db => opts[:db]
+					}.update inopts.dup
+				if opts[:password]
+					url = "redis://#{opts[:password]}@#{opts[:host]}:#{opts[:port]}/#{opts[:db]}"
+				else
+					url = "redis://#{opts[:host]}:#{opts[:port]}/#{opts[:db]}"
+				end
+			end
+
+			def redis=(opts={})
+				@_redis = EM::Hiredis.connect default_rds_opts(opts)
 			end
 
 			def redis
-				@_redis || (EM::Protocols::Redis.connect)
+				@_redis || EM::Hiredis.connect
 			end
 		end
 	end

@@ -16,13 +16,15 @@ module Sad
 		#     :monitor    => true
 		#   }
 
-		def self.start(opts={})
+		def self.exec(opts={})
 			count = (ENV['COUNT'] && ENV['COUNT'].to_i)
 
 			if count and count != 0
 				count.times do |t|
-					Daemons.run_proc('Sad', opts) do
-						Sad::Server.run(ENV['QUEUE'])
+					Daemons.run_proc("Sad-#{t+1}", opts) do
+						EM.run{
+							Sad::Server.run(ENV['QUEUE'])
+						}
 					end
 				end
 			end

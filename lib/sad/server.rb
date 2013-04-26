@@ -8,12 +8,16 @@ module Sad
 			end
 
 			def fetch(queue)
-				::Sad::Config.redis.blpop(queue, 60){|_, data|
+				request = ::Sad::Config.redis.blpop(queue, 60)
+				request.callback{|_, data|
 					if data
 						STDOUT.puts '-'*15 + data.inspect + '-'*15
 						payload = Payload.decode(data)
 						EM.defer{perform(payload.klass, payload.args)}
 					end
+					fetch(queue) unless shutdown?
+				}
+				request.errback{
 					fetch(queue) unless shutdown?
 				}
 			end
