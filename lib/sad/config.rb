@@ -10,11 +10,11 @@ module Sad
 			end
 
 			def redis=(uri)
-				@_redis = EM::Hiredis.connect uri
+				@_redis_url = uri
 			end
 
 			def redis
-				@_redis ||= EM::Hiredis.connect
+				@_redis ||= EM::Hiredis.connect(@_redis_url)
 			end
 		end
 	end

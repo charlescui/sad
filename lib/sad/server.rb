@@ -23,7 +23,7 @@ module Sad
 			end
 
 			def perform(klass, args)
-				klass.constantize.send :perform, args
+				klass.constantize.send :perform, *args
 			end
 
 			def register_signal
