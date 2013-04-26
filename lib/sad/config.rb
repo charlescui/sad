@@ -16,6 +16,14 @@ module Sad
 			def redis
 				@_redis ||= EM::Hiredis.connect(@_redis_url)
 			end
+
+			def interval=(int)
+				@_interval = int.to_i
+			end
+
+			def interval
+				@_interval ||= 3
+			end
 		end
 	end
 end

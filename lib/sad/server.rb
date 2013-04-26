@@ -15,9 +15,16 @@ module Sad
 						payload = Payload.decode(data)
 						EM.defer{perform(payload.klass, payload.args)}
 					end
-					fetch(queue) unless shutdown?
+					fetch_with_interval(queue)
 				}
 				request.errback{
+					STDERR.puts 'error with redis request.'
+					fetch_with_interval(queue)
+				}
+			end
+
+			def fetch_with_interval(queue)
+				EM.add_timer(::Sad::Config.interval){
 					fetch(queue) unless shutdown?
 				}
 			end
@@ -43,6 +50,7 @@ module Sad
 
 			def shutdown
 				@_shutdown = true
+				EM.stop
 			end
 		end
 	end
