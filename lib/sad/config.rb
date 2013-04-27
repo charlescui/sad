@@ -9,6 +9,10 @@ module Sad
 				@_namespace || 'SadQueue'
 			end
 
+			def queue(q)
+				[Sad::Config.namespace, q].join ':'
+			end
+
 			def redis=(uri)
 				@_redis_url = uri
 			end
@@ -23,6 +27,14 @@ module Sad
 
 			def interval
 				@_interval ||= 3
+			end
+
+			def max_retry=(int)
+				@_max_retry = int.to_i
+			end
+
+			def max_retry
+				@_max_retry ||= 3
 			end
 		end
 	end

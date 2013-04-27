@@ -4,7 +4,7 @@ module Sad
 			def run(queue)
 				@_shutdown = false
 				register_signal
-				fetch([Sad::Config.namespace, queue].join ':')
+				fetch(Sad::Config.queue(queue))
 			end
 
 			def fetch(queue)
@@ -13,7 +13,7 @@ module Sad
 					if data
 						STDOUT.puts '-'*15 + data.inspect + '-'*15
 						payload = Payload.decode(data)
-						EM.defer{perform(payload.klass, payload.args)}
+						payload_call(payload)
 					end
 					fetch_with_interval(queue)
 				}
@@ -29,8 +29,18 @@ module Sad
 				}
 			end
 
-			def perform(klass, args)
-				klass.constantize.send :perform, *args
+			def payload_call(payload)
+				# 如果该任务有延时执行要求，
+				# 则在定时器执行时将其延时的key删掉，
+				# 再重新入队
+				if payload.sad_args['delay'] and payload.sad_args['delay'] != '' and payload.sad_args['delay'] != 0
+					EM.add_timer(payload.sad_args['delay'].to_i){
+						payload.sad_args.delete('delay')
+						payload.enqueue
+					}
+				else
+					payload.perform
+				end
 			end
 
 			def register_signal

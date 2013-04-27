@@ -41,7 +41,6 @@ EM.run{
 
 两个运行环境都要有SadJob这个测试类的定义存在
 
---------
 
 ## 在项目中使用
 
@@ -89,6 +88,40 @@ Sad::Config.namespace = 'MyBackgroundJobQueue'
 		 6178   ??  R      0:02.58 Sad-1      
 		 6181   ??  S      0:02.61 Sad-2      
 		 6522 s002  R+     0:00.00 grep Sad
+
+
+## 测试
+
+启动一个队列
+
+```sh
+bundle exec rake sad:restart COUNT=1 QUEUE=MySadJob DIR=./tmp/pids
+```
+
+执行最简单的测试
+
+```sh
+bundle exec ruby ./test/test_sad.rb
+```
+
+执行异常任务测试,异常是指Klass.perform函数执行时出现异常，如果是异步任务，没办法知道异常，因为执行完perform后，代码运行环境已经脱离sad了，需要人工自己处理.
+
+当Klass.perform出错时，会延时重试，重试三次后，如果还有错误，则放弃该任务.
+
+```sh
+bundle exec ruby ./test/test_perform_with_exception.rb
+```
+
+在异步模式的代码中，异常如果被抛给top level的运行时的话，则代码无法控制，所以有异常的时候一定要捕获到，写在类似errback的回调中，对于Sad的重试，自动重试只能保证perform执行没问题，如果在callback中出错，则需要用户手工将该任务重新enqueue来实现重试的机制。
+
+## 任务配置
+
+```ruby
+SadJob.enqueue(1,2,3,4,5){|payload|
+	# delay -> 当sad进程得到该任务时并不立即执行，而是延迟多干秒后执行
+	payload.sad_args['delay'] = 5
+}
+```
 
 ## Contributing to sad
  

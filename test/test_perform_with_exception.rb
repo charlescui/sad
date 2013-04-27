@@ -9,12 +9,11 @@ class SadJob
 	end
 
 	def self.perform(*args)
-		puts "I'm in sad job perform method."
-		puts args
+		raise RuntimeError, 'Error for test!!!!'
 	end
 end
 
-EM.run{
+EM.run {
 	EM::PeriodicTimer.new(3){
 		SadJob.enqueue('this is some args', {:hello => 'code'})	
 	}
