@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "sad"
-  s.version = "1.3.0"
+  s.version = "1.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["\u{5d14}\u{5ce5}"]
-  s.date = "2013-04-26"
+  s.date = "2013-04-27"
   s.description = "a simple em baseed background job worker."
   s.email = "zheng.cuizh@gmail.com"
   s.extra_rdoc_files = [
@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
     "lib/tasks/sad.rake",
     "sad.gemspec",
     "test/helper.rb",
+    "test/test_perform_with_exception.rb",
     "test/test_sad.rb"
   ]
   s.homepage = "http://github.com/charlescui/sad"
@@ -48,22 +49,28 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<jeweler>, [">= 0"])
       s.add_runtime_dependency(%q<activesupport>, [">= 0"])
+      s.add_runtime_dependency(%q<eventmachine>, [">= 0"])
       s.add_runtime_dependency(%q<em-hiredis>, [">= 0"])
       s.add_runtime_dependency(%q<daemons>, [">= 0"])
       s.add_runtime_dependency(%q<json>, [">= 0"])
+      s.add_runtime_dependency(%q<pry>, [">= 0"])
     else
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<activesupport>, [">= 0"])
+      s.add_dependency(%q<eventmachine>, [">= 0"])
       s.add_dependency(%q<em-hiredis>, [">= 0"])
       s.add_dependency(%q<daemons>, [">= 0"])
       s.add_dependency(%q<json>, [">= 0"])
+      s.add_dependency(%q<pry>, [">= 0"])
     end
   else
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<activesupport>, [">= 0"])
+    s.add_dependency(%q<eventmachine>, [">= 0"])
     s.add_dependency(%q<em-hiredis>, [">= 0"])
     s.add_dependency(%q<daemons>, [">= 0"])
     s.add_dependency(%q<json>, [">= 0"])
+    s.add_dependency(%q<pry>, [">= 0"])
   end
 end
 
