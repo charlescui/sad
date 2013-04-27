@@ -10,4 +10,15 @@ module Sad
 	autoload :Server, 'sad/server'
 	autoload :Worker, 'sad/worker'
 	autoload :Runner, 'sad/runner'
+	autoload :Logger, 'sad/logger'
+
+	class << self
+		def logger=(opts)
+			@_logger = ::Sad::Logger.new(opts)
+		end
+
+		def logger
+			@_logger ||= ::Sad::Logger.new
+		end
+	end
 end

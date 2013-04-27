@@ -11,14 +11,14 @@ module Sad
 				request = ::Sad::Config.redis.blpop(queue, 60)
 				request.callback{|_, data|
 					if data
-						STDOUT.puts '-'*15 + data.inspect + '-'*15
+						logger.info '-'*15 + data.inspect + '-'*15
 						payload = Payload.decode(data)
 						payload_call(payload)
 					end
 					fetch_with_interval(queue)
 				}
 				request.errback{
-					STDERR.puts 'error with redis request.'
+					logger.error "error with redis request.\n#{request.inspect}"
 					fetch_with_interval(queue)
 				}
 			end

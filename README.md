@@ -123,6 +123,24 @@ SadJob.enqueue(1,2,3,4,5){|payload|
 }
 ```
 
+## 日志logger
+
+Sad.logger是个Logger的实例，通过如下方式来配置:
+
+```ruby
+Sad.logger = {:path => 'sad.production.log', :level => 2}
+Sad.logger.error("Crashed!!!")
+```
+
+level的取值如下:
+
+* DEBUG = 0
+* INFO = 1
+* WARN = 2
+* ERROR = 3
+* FATAL = 4
+* UNKNOWN = 5
+
 ## Contributing to sad
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.

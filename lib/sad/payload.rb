@@ -34,7 +34,7 @@ module Sad
 					self.sad_args['delay'] = ::Sad::Config.interval * self.sad_args['retry']
 					self.enqueue
 				else
-					STDERR.puts "Payload perform error for #{self.sad_args['retry']} retrys:\n#{self.inspect}"
+					logger.error "Payload perform error for #{self.sad_args['retry']} retrys:\n#{self.inspect}"
 				end
 			end
 		end
