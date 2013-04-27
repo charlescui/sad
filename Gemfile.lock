@@ -18,6 +18,7 @@ GEM
       rake
       rdoc
     json (1.7.7)
+    logger (1.2.8)
     method_source (0.8.1)
     multi_json (1.7.2)
     pry (0.9.12)
@@ -39,4 +40,5 @@ DEPENDENCIES
   eventmachine
   jeweler
   json
+  logger
   pry
