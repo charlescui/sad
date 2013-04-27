@@ -22,3 +22,7 @@ module Sad
 		end
 	end
 end
+
+EM.error_handler{
+	::Sad.logger.fatal('exception hit eventmachine!!!')
+}
