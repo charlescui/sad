@@ -141,6 +141,10 @@ level的取值如下:
 * FATAL = 4
 * UNKNOWN = 5
 
+## 注意事项
+
+* 本库使用的redis是em-hiredis，和redis库冲突，同一个项目不能同时引用
+
 ## Contributing to sad
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.

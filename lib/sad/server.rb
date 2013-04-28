@@ -8,17 +8,19 @@ module Sad
 			end
 
 			def fetch(queue)
-				request = ::Sad::Config.redis.blpop(queue, 60)
+				::Sad::Procline.set("Wainting for #{queue}")
+				request = ::Sad::Config.redis.blpop(queue, 30)
 				request.callback{|_, data|
+					::Sad::Procline.set("Fetched #{queue} - #{Time.now.strftime('%Y-%m-%d %H:%M:%S')}")
 					if data
-						logger.info '-'*15 + data.inspect + '-'*15
+						::Sad.logger.info '-'*15 + data.inspect + '-'*15
 						payload = Payload.decode(data)
 						payload_call(payload)
 					end
 					fetch_with_interval(queue)
 				}
 				request.errback{
-					logger.error "error with redis request.\n#{request.inspect}"
+					::Sad.logger.error "error with redis request.\n#{request.inspect}"
 					fetch_with_interval(queue)
 				}
 			end
