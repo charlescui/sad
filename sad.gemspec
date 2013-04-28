@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "sad"
-  s.version = "1.5.2"
+  s.version = "1.5.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["\u{5d14}\u{5ce5}"]
@@ -38,6 +38,7 @@ Gem::Specification.new do |s|
     "test/helper.rb",
     "test/test_logger.rb",
     "test/test_perform_with_exception.rb",
+    "test/test_redis.rb",
     "test/test_sad.rb"
   ]
   s.homepage = "http://github.com/charlescui/sad"
