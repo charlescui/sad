@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "sad"
-  s.version = "1.5.1"
+  s.version = "1.5.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["\u{5d14}\u{5ce5}"]
-  s.date = "2013-04-27"
+  s.date = "2013-04-28"
   s.description = "a simple em baseed background job worker."
   s.email = "zheng.cuizh@gmail.com"
   s.extra_rdoc_files = [
@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "lib/sad/config.rb",
     "lib/sad/logger.rb",
     "lib/sad/payload.rb",
+    "lib/sad/procline.rb",
     "lib/sad/runner.rb",
     "lib/sad/server.rb",
     "lib/sad/tasks.rb",
@@ -35,6 +36,7 @@ Gem::Specification.new do |s|
     "lib/tasks/sad.rake",
     "sad.gemspec",
     "test/helper.rb",
+    "test/test_logger.rb",
     "test/test_perform_with_exception.rb",
     "test/test_sad.rb"
   ]
