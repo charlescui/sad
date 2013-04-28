@@ -11,6 +11,7 @@ module Sad
 	autoload :Worker, 'sad/worker'
 	autoload :Runner, 'sad/runner'
 	autoload :Logger, 'sad/logger'
+	autoload :Procline, 'sad/procline'
 
 	class << self
 		def logger=(opts)

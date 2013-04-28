@@ -19,7 +19,7 @@ module Sad
 		def initialize(opts={})
 			opts = {
 				:path => STDOUT,
-				:level => 2
+				:level => 1
 			}.update opts.dup
 
 			@logger = ::Logger.new(opts[:path])
