@@ -17,13 +17,18 @@ module Sad
     UNKNOWN = 5
 =end
 		def initialize(opts={})
-			opts = {
+			@opts = {
 				:path => STDOUT,
 				:level => 1
 			}.update opts.dup
 
-			@logger = ::Logger.new(opts[:path])
-			@logger.level = opts[:level]
+			@logger = ::Logger.new(@opts[:path])
+			@logger.level = @opts[:level]
+		end
+
+		def reopen
+			@logger = ::Logger.new(@opts[:path])
+			@logger.level = @opts[:level]
 		end
 
 		def method_missing(method_name, *args, &block)

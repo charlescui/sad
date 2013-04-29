@@ -2,6 +2,7 @@ module Sad
 	class Server
 		class << self
 			def run(queue)
+				::Sad.logger.info("#{'#'*5} Sad server start. #{'#'*5}")
 				@_shutdown = false
 				register_signal
 				fetch(Sad::Config.queue(queue))

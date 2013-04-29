@@ -23,6 +23,7 @@ module Sad
 				count.times do |t|
 					Daemons.run_proc("Sad-#{t+1}", opts) do
 						EM.run{
+							Sad.logger.reopen
 							Sad::Server.run(ENV['QUEUE'])
 						}
 					end
