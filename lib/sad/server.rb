@@ -10,7 +10,10 @@ module Sad
 
 			def fetch(queue)
 				::Sad::Procline.set("Wainting for #{queue}")
+				::Sad.logger.info "Server status:\n#{status.pretty_inspect}"
+
 				request = ::Sad::Config.redis.blpop(queue, 30)
+
 				request.callback{|_, data|
 					::Sad::Procline.set("Fetched #{queue} - #{Time.now.strftime('%Y-%m-%d %H:%M:%S')}")
 					if data
@@ -20,6 +23,7 @@ module Sad
 					end
 					fetch_with_interval(queue)
 				}
+
 				request.errback{
 					::Sad.logger.error "error with redis request.\n#{request.inspect}"
 					fetch_with_interval(queue)
@@ -64,6 +68,19 @@ module Sad
 			def shutdown
 				@_shutdown = true
 				EM.stop
+			end
+
+			def status
+				if EventMachine.instance_eval {defined? :threadqueue} and EventMachine.instance_eval {defined? :resultqueue}
+                    content = { 
+                        'threadqueue' => EventMachine.instance_eval {@threadqueue and @threadqueue.size},
+                        'resultqueue' => EventMachine.instance_eval {@resultqueue and @resultqueue.size},
+                        'num_waiting' => EventMachine.instance_eval {@threadqueue and @threadqueue.num_waiting}
+                    }
+                    return content
+                else
+                	{}
+                end
 			end
 		end
 	end

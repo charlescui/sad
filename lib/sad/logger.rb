@@ -22,13 +22,13 @@ module Sad
 				:level => 1
 			}.update opts.dup
 
-			@logger = ::Logger.new(@opts[:path])
-			@logger.level = @opts[:level]
+			reopen
 		end
 
 		def reopen
 			@logger = ::Logger.new(@opts[:path])
 			@logger.level = @opts[:level]
+			@logger.formatter = ::Logger::Formatter.new
 		end
 
 		def method_missing(method_name, *args, &block)
