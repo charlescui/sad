@@ -24,6 +24,6 @@ module Sad
 	end
 end
 
-EM.error_handler{
-	::Sad.logger.fatal("exception hit eventmachine!!!\n#{$!.inspect}")
-}
+# EM.error_handler{
+# 	::Sad.logger.fatal("exception hit eventmachine!!!\n#{$!.inspect}")
+# }

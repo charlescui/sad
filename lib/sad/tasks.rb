@@ -34,4 +34,18 @@ namespace :sad do
 		}
 		Sad::Runner.exec(opts)
 	end
+
+    desc "ontop sad with args - QUEUE=sosad DIR=./tmp/pids"
+    task :ontop do
+		ENV['COUNT'] = 1
+        opts = {
+                :dir => ENV['DIR'],
+                :multiple => true,
+                :log_output => true,
+                :backtrace  => true,
+                :ontop => true,
+                :ARGV => ['start']
+        }
+        Sad::Runner.exec(opts)
+    end
 end
