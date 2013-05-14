@@ -21,7 +21,7 @@ module Sad
 
 			if count and count != 0
 				count.times do |t|
-					Daemons.run_proc("Sad-#{t+1}", opts) do
+					Daemons.run_proc("Sad-#{Sad::Config.queue(ENV['QUEUE'])}-#{t+1}", opts) do
 						EM.run{
 							Sad.logger.reopen
 							Sad::Server.run(ENV['QUEUE'])
