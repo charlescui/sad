@@ -10,7 +10,6 @@ module Sad
 
 			def fetch(queue)
 				::Sad::Procline.set("Wainting for #{queue}")
-				::Sad.logger.info "Server status:\n#{status.pretty_inspect}"
 
 				request = ::Sad::Config.redis.blpop(queue, 30)
 
