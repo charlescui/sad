@@ -1,6 +1,13 @@
 namespace :sad do
+	task :setup do
+		if defined?(Rails)
+			Rake::Task["environment"].invoke
+		end
+	end
+
 	desc "start sad with args - COUNT=4 QUEUE=sosad DIR=./tmp/pids"
-	task :start do
+	task :start => [ :setup ] do
+		ENV['COUNT'] = '1' unless ENV['COUNT']
 		opts = {
 			:dir => ENV['DIR'],
 			:multiple => true,
@@ -12,7 +19,8 @@ namespace :sad do
 	end
 
 	desc "stop sad with args - COUNT=4 QUEUE=sosad DIR=./tmp/pids"
-	task :stop do
+	task :stop => [ :setup ] do
+		ENV['COUNT'] = '1' unless ENV['COUNT']
 		opts = {
 			:dir => ENV['DIR'],
 			:multiple => true,
@@ -24,7 +32,8 @@ namespace :sad do
 	end
 
 	desc "restart sad with args - COUNT=4 QUEUE=sosad DIR=./tmp/pids"
-	task :restart do
+	task :restart => [ :setup ] do
+		ENV['COUNT'] = '1' unless ENV['COUNT']
 		opts = {
 			:dir => ENV['DIR'],
 			:multiple => true,
@@ -36,8 +45,8 @@ namespace :sad do
 	end
 
     desc "ontop sad with args - QUEUE=sosad DIR=./tmp/pids"
-    task :ontop do
-		ENV['COUNT'] = 1
+    task :ontop => [ :setup ] do
+		ENV['COUNT'] = '1'
         opts = {
                 :dir => ENV['DIR'],
                 :multiple => true,
