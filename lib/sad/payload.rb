@@ -40,7 +40,9 @@ module Sad
 		end
 
 		def enqueue
-			::Sad::Config.redis.rpush(self.sad_args['queue'], self.encode)
+			::Sad::Config.redis.rpush(self.sad_args['queue'], self.encode) do |value|
+				yield(value) if block_given?
+			end
 		end
 
 		def self.decode(json)
