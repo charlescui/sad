@@ -12,8 +12,9 @@ module Sad
 		def enqueue(*args)
 			payload = ::Sad::Payload.new(self.to_s, args)
 			payload.sad_args['queue'] = queue_name
-			yield payload if block_given?
-			payload.enqueue
+			payload.enqueue do |value|
+				yield value if block_given?
+			end
 		end
 	end
 end

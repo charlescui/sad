@@ -39,9 +39,9 @@ module Sad
 			end
 		end
 
-		def enqueue
+		def enqueue(&blk)
 			::Sad::Config.redis.rpush(self.sad_args['queue'], self.encode) do |value|
-				yield(value) if block_given?
+				blk.call(value) if blk
 			end
 		end
 
