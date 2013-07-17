@@ -29,6 +29,21 @@ module Sad
 			@logger = ::Logger.new(@opts[:path])
 			@logger.level = @opts[:level]
 			@logger.formatter = ::Logger::Formatter.new
+			reset_loggers(@logger)
+		end
+
+		def reset_loggers(logger)
+			if defined?(ActiveRecord)
+				ActiveRecord::Base.logger = logger
+			end
+
+			if defined?(Rails)
+				Rails.logger = logger
+			end
+
+			if defined?(Mongoid)
+				Mongoid.logger = logger
+			end
 		end
 
 		def method_missing(method_name, *args, &block)
