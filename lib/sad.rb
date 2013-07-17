@@ -14,12 +14,17 @@ module Sad
 	autoload :Procline, 'sad/procline'
 
 	class << self
+		attr_accessor :on_before_start
 		def logger=(opts)
 			@_logger = ::Sad::Logger.new(opts)
 		end
 
 		def logger
 			@_logger ||= ::Sad::Logger.new
+		end
+
+		def before_start(&blk)
+			@on_before_start = blk
 		end
 	end
 end

@@ -44,6 +44,11 @@ module Sad
 			if defined?(Mongoid)
 				Mongoid.logger = logger
 			end
+
+			if defined?(Paperclip)
+				Paperclip.logger = logger
+			end
+
 		end
 
 		def method_missing(method_name, *args, &block)
