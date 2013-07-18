@@ -10,7 +10,7 @@ module Sad
 			end
 
 			def fetch(queue)
-				::Sad::Procline.set("Wainting for #{queue}")
+				::Sad::Procline.set("Waiting for #{queue}")
 
 				request = ::Sad::Config.redis.blpop(queue, 30)
 
@@ -46,7 +46,11 @@ module Sad
 						payload.enqueue
 					}
 				else
-					payload.perform
+					begin
+						payload.perform
+					rescue Exception => e
+						::Sad.logger.error("#{e.to_s}$/#{e.backtrace.join($/)}")
+					end
 				end
 			end
 
