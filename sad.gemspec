@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "sad"
-  s.version = "1.5.14"
+  s.version = "1.5.15"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["\u{5d14}\u{5ce5}"]
-  s.date = "2013-07-18"
+  s.date = "2013-07-30"
   s.description = "a simple em baseed background job worker."
   s.email = "zheng.cuizh@gmail.com"
   s.extra_rdoc_files = [
@@ -40,6 +40,7 @@ Gem::Specification.new do |s|
     "test/test_logger_write_closed_file.rb",
     "test/test_perform_with_exception.rb",
     "test/test_redis.rb",
+    "test/test_redis_in_job.rb",
     "test/test_sad.rb"
   ]
   s.homepage = "http://github.com/charlescui/sad"
@@ -58,6 +59,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<em-hiredis>, [">= 0"])
       s.add_runtime_dependency(%q<daemons>, [">= 0"])
       s.add_runtime_dependency(%q<logger>, [">= 0"])
+      s.add_runtime_dependency(%q<redis>, [">= 0"])
       s.add_runtime_dependency(%q<json>, [">= 0"])
       s.add_runtime_dependency(%q<pry>, [">= 0"])
     else
@@ -67,6 +69,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<em-hiredis>, [">= 0"])
       s.add_dependency(%q<daemons>, [">= 0"])
       s.add_dependency(%q<logger>, [">= 0"])
+      s.add_dependency(%q<redis>, [">= 0"])
       s.add_dependency(%q<json>, [">= 0"])
       s.add_dependency(%q<pry>, [">= 0"])
     end
@@ -77,6 +80,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<em-hiredis>, [">= 0"])
     s.add_dependency(%q<daemons>, [">= 0"])
     s.add_dependency(%q<logger>, [">= 0"])
+    s.add_dependency(%q<redis>, [">= 0"])
     s.add_dependency(%q<json>, [">= 0"])
     s.add_dependency(%q<pry>, [">= 0"])
   end
