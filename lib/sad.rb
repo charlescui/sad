@@ -1,6 +1,6 @@
 $:.unshift File.join(File.dirname(__FILE__), '.')
 
-require "active_support"
+require "active_support/core_ext"
 require "eventmachine"
 require "em-hiredis"
 
@@ -28,7 +28,3 @@ module Sad
 		end
 	end
 end
-
-# EM.error_handler{
-# 	::Sad.logger.fatal("exception hit eventmachine!!!\n#{$!.inspect}")
-# }

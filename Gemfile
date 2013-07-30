@@ -7,5 +7,6 @@ gem 'eventmachine'
 gem 'em-hiredis'
 gem 'daemons'
 gem 'logger'
+gem 'redis'
 gem	"json"
 gem 'pry'

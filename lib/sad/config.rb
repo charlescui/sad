@@ -21,8 +21,8 @@ module Sad
 				@_redis ||= EM::Hiredis.connect(@_redis_url)
 			end
 
-			def interval=(int)
-				@_interval = int.to_i
+			def interval=(float)
+				@_interval = float.to_f
 			end
 
 			def interval

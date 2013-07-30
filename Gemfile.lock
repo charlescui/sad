@@ -28,6 +28,7 @@ GEM
     rake (10.0.4)
     rdoc (4.0.0)
       json (~> 1.4)
+    redis (3.0.3)
     slop (3.4.4)
 
 PLATFORMS
@@ -42,3 +43,4 @@ DEPENDENCIES
   json
   logger
   pry
+  redis

@@ -14,6 +14,11 @@ class SadJob
 		'MySadJob'
 	end
 
+	# optional
+	def	self.redis
+		# support: em-hiredis, redis, redis-namespace
+	end
+
 	def self.perform(*args)
 		puts "I'm in sad job perform method."
 		puts args
