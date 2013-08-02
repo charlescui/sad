@@ -24,8 +24,9 @@ module Sad
 					Daemons.run_proc("Sad-#{Sad::Config.queue(ENV['QUEUE'])}-#{t+1}", opts) do
 						self.require_libs
 						self.show_info
+						::Sad.logger.reopen
 						EM.run{
-							Sad.logger.reopen
+							Sad::Config.redis.send(:reconnect)
 							Sad::Server.run(ENV['QUEUE'])
 						}
 					end

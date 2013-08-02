@@ -21,15 +21,19 @@ module Sad
 				:path => STDOUT,
 				:level => 1
 			}.update opts.dup
-
-			reopen
+			init_log
 		end
 
 		def reopen
-			@logger = ::Logger.new(@opts[:path])
-			@logger.level = @opts[:level]
-			@logger.formatter = ::Logger::Formatter.new
+			@logger = init_log
 			reset_loggers(@logger)
+		end
+
+		def init_log
+			logger = ::Logger.new(@opts[:path])
+			logger.level = @opts[:level]
+			logger.formatter = ::Logger::Formatter.new
+			logger
 		end
 
 		def reset_loggers(logger)
