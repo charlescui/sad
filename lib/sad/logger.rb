@@ -21,7 +21,7 @@ module Sad
 				:path => STDOUT,
 				:level => 1
 			}.update opts.dup
-			init_log
+			@logger = init_log
 		end
 
 		def reopen
