@@ -11,7 +11,10 @@ module Sad
 				'retry' => 0,
 				'delay' => 0
 			}.update(sad_args)
-			self.redis ||= ::Sad::Config.redis
+		end
+
+		def redis
+			@redis ||= ::Sad::Config.redis
 		end
 
 		def encode
