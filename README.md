@@ -71,9 +71,9 @@ Sad::Config.namespace = 'MyBackgroundJobQueue'
 查看是否有sad的rake任务:
 
 		saimatoMacBook-Pro:rca.imdb cuizheng$ bundle exec rake -T
-		rake sad:restart                # restart sad with args - COUNT=4 QUEUE=sosad DIR=./tmp/pids
-		rake sad:start                  # start sad with args - COUNT=4 QUEUE=sosad DIR=./tmp/pids
-		rake sad:stop                   # stop sad with args - COUNT=4 QUEUE=sosad DIR=./tmp/pids
+		rake sad:restart                # restart sad with args - COUNT=4 QUEUE=sosad INTERVAL=2 DIR=./tmp/pids
+		rake sad:start                  # start sad with args - COUNT=4 QUEUE=sosad INTERVAL=2 DIR=./tmp/pids
+		rake sad:stop                   # stop sad with args - COUNT=4 QUEUE=sosad INTERVAL=2 DIR=./tmp/pids
 
 启动:`bundle exec rake sad:start COUNT=2 QUEUE=sosad DIR=./tmp/pids`
 

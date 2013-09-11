@@ -22,6 +22,9 @@ module Sad
 			if count and count != 0
 				count.times do |t|
 					Daemons.run_proc("Sad-#{Sad::Config.queue(ENV['QUEUE'])}-#{t+1}", opts) do
+						# set interval
+						::Sad::Config.interval = ENV['INTERVAL'].to_f if ENV['INTERVAL']
+						
 						self.require_libs
 						self.show_info
 						::Sad.logger.reopen
