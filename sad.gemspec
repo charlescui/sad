@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["\u{5d14}\u{5ce5}"]
   s.date = "2013-09-11"
-  s.description = "a simple em baseed background job worker."
+  s.description = "a simple em based background job worker."
   s.email = "zheng.cuizh@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
